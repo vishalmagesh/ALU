@@ -1,3 +1,24 @@
+# Aim:
+To stimulate and synthesis 16bit ALU using Vivado.
+
+# Software Required:
+vivado 2023.2 software.
+
+# Procedure:
+STEP:1 Start the vivado software, Select and Name the New project.
+
+STEP:2 Select the device family, device, package and speed.
+
+STEP:3 Select new source in the New Project and select Verilog Module as the Source type.
+
+STEP:4 Type the File Name and module name and Click Next and then finish button. Type the code and save it.
+
+STEP:5 Select the run simulation and then run Behavioral Simulation in the Source Window and click the check syntax.
+
+STEP:6 Click the simulation to simulate the program and give the inputs and verify the outputs as per the truth table.
+
+STEP:7 compare the output with truth table.
+
 # ALU
 ![image](https://github.com/RESMIRNAIR/ALU/assets/154305926/33dff162-59b3-44e2-886a-1ddd6e60979f)
 # ALU Arithmetic and Logic Operations
@@ -35,3 +56,97 @@
 | 1110  |   ALU_Out = 1 if A>B else 0;
 ----------------------------------------------------------------------
 | 1111  |   ALU_Out = 1 if A=B else 0;
+# program
+```
+module alu (
+
+input[7:0]A,B,
+
+input[3:0]ALU_SEL,
+
+output reg[7:0]Result
+
+);
+
+always @ (*)
+
+begin  
+
+case(ALU_SEL)
+
+4'b0000:
+
+Result=A+B;
+
+4'b0001:
+
+Result=A-B;
+
+4'b0010:
+
+Result=A*B;
+
+4'b0011:
+
+Result=A/B;
+
+4'b0100:
+
+Result=A>>1;
+
+4'b0101:
+
+Result=A<<1;
+
+4'b0110:
+
+Result={A[6:0],A[7]};
+
+4'b0111:
+
+Result={A[0],A[7:1]};
+
+4'b1000:
+
+Result=A&B;
+
+4'b1001:
+
+Result=A|B;
+
+4'b1010:
+
+Result=A^B;
+
+4'b1011:
+
+Result=~(A|B);
+
+4'b1100:
+
+Result=~(A&B);
+
+4'b1101:
+
+Result=~(A^B);
+
+4'b1110:
+
+Result=(A>B)?8'd1:8'd0;
+
+4'b1111:
+
+Result=(A==B)?8'd1:8'd0;
+
+default: Result=A+B;
+
+endcase
+
+end
+
+endmodule
+```
+# output
+![326365482-e34787a5-6d8a-4bed-81fc-cb5a11ad2ee1](https://github.com/RESMIRNAIR/ALU/assets/160302888/9a1ae65c-8996-4d78-9190-2165c9a96d04)
+# Result:
+Thus the verilog program for 16bit ALU has been simulated and verified successfully.
